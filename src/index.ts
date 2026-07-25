@@ -11,20 +11,26 @@ export interface AgentAsset {
   kind: AgentAssetKind;
   /** Path within this package's `assets/` dir. */
   source: string;
-  /** Destination in the consumer repo, relative to its root. */
-  target: string;
+  /**
+   * Destination(s) in the consumer repo, relative to its root. An array means
+   * the same source is dual-written to multiple locations (e.g. skills land
+   * at `.agents/skills` for cross-tool manual reference and `.claude/skills`
+   * for native Claude Code discovery).
+   */
+  target: string | string[];
   /** When true, `source` is a directory whose tree is walked recursively. */
   recurse?: boolean;
 }
 
 /**
  * The canonical set of agent-facing assets vendored into each
- * `@finografic` project's `.github/` directory.
+ * `@finografic` project's `.agents/` directory (`.github/` for
+ * Copilot-specific content, which only Copilot itself reads from there).
  */
 export const agentAssets = [
   { kind: 'config', source: 'copilot-instructions.md', target: '.github/copilot-instructions.md' },
-  { kind: 'instruction', source: 'instructions', target: '.github/instructions', recurse: true },
-  { kind: 'skill', source: 'skills', target: '.github/skills', recurse: true },
+  { kind: 'instruction', source: 'instructions', target: '.agents/instructions', recurse: true },
+  { kind: 'skill', source: 'skills', target: ['.agents/skills', '.claude/skills'], recurse: true },
 ] as const satisfies readonly AgentAsset[];
 
 /**

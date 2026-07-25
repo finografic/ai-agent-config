@@ -16,12 +16,19 @@ import { agentAssets, assetsRoot } from '@finografic/ai-agent-config';
 // agentAssets: typed manifest of vendored agent-facing files (config, instructions, skills)
 // assetsRoot: absolute path to this package's assets/ directory, for reading raw file contents
 for (const asset of agentAssets) {
-  console.log(asset.kind, asset.source, '->', asset.target);
+  // target is string | string[] — skills dual-write to .agents/skills (cross-tool manual
+  // reference) and .claude/skills (native Claude Code discovery) from the same source
+  const targets = Array.isArray(asset.target) ? asset.target : [asset.target];
+  for (const target of targets) {
+    console.log(asset.kind, asset.source, '->', target);
+  }
 }
 ```
 
 This package ships the raw asset files plus a typed manifest describing where each lands in a
-consumer repo's `.github/` directory. It does not contain any copy/apply/vendoring logic — that
+consumer repo. Instructions and skills land under `.agents/` (skills also dual-write to
+`.claude/skills/`); `copilot-instructions.md` stays under `.github/` since that's the only place
+Copilot itself reads from. This package does not contain any copy/apply/vendoring logic — that
 pipeline lives in [`@finografic/genx`](https://github.com/finografic/genx) (`genx managed audit`).
 
 ## Development
