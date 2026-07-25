@@ -1,7 +1,7 @@
 {
   "name": "@finografic/ai-agent-config",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Single source of truth for agent-facing instructions, skills, and hooks, synced across the @finografic ecosystem.",
   "homepage": "https://github.com/finografic/ai-agent-config",
   "repository": {
