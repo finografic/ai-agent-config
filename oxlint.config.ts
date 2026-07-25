@@ -1,8 +1,9 @@
+import { oxlintLibraryConfig, testOverrides, configOverrides } from '@finografic/oxc-config/oxlint';
 import { defineConfig } from 'oxlint';
 import type { OxlintConfig } from 'oxlint';
-import { oxlintLibraryConfig, testOverrides, configOverrides } from '@finografic/oxc-config/oxlint';
 
 export default defineConfig({
   ...oxlintLibraryConfig,
   overrides: [testOverrides, configOverrides],
+  ignorePatterns: [...(oxlintLibraryConfig.ignorePatterns ?? []), 'assets/**'],
 } satisfies OxlintConfig);
