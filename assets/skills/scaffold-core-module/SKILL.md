@@ -11,7 +11,7 @@ This skill applies the **portable infrastructure layer** pattern: code in `src/c
 
 ## Read first (repo — canonical for this repository)
 
-- `.github/instructions/project/core-module-patterns.instructions.md` — folder layout, rules, imports, picocolors, header comment, current module table.
+- `.agents/instructions/project/core-module-patterns.instructions.md` — folder layout, rules, imports, picocolors, header comment, current module table.
 
 ## Deeper spec (canonical — in this repo)
 

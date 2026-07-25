@@ -11,7 +11,7 @@ This skill applies the **typed root help** pattern used across `@finografic` CLI
 
 ## Read first (repo — canonical for this repository)
 
-- `.github/instructions/project/cli-help-patterns.instructions.md` — rules, file locations, `HelpConfig` shape, examples/footer conventions.
+- `.agents/instructions/project/cli-help-patterns.instructions.md` — rules, file locations, `HelpConfig` shape, examples/footer conventions.
 
 ## Deeper spec (canonical — in this repo)
 
